@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>Node.js Weather Application</title>
+	    <link rel="stylesheet" href="/css/styles.css">
+	    <meta name="robots" content="all,follow">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	</head>
+	<body>
+
+		<div class="snowflakes" aria-hidden="true">
+		  <div class="snowflake">
+		  &#x263C
+		  </div>
+		  <div class="snowflake">
+		  &#x1F321
+		  </div>
+		  <div class="snowflake">
+		  &#x1F327
+		  </div> 
+		  <div class="snowflake">
+		  ❅
+		  </div>
+		  <div class="snowflake">
+		  &#x26C8
+		  </div>
+		  <div class="snowflake">
+		  ☂
+		  </div>
+		  <div class="snowflake">
+		  ☃
+		  </div>
+		  
+		  <div class="snowflake">
+		  &#x2601
+		  </div>
+		  <div class="snowflake">
+		  &#x1F325
+		  </div>
+		  
+		  <div class="snowflake">
+		  ❆
+		  </div>
+
+		</div>
+
+		<header class="header">
+          <nav class="navbar navbar-expand-lg">
+            <div class="container">
+              <div class="navbar-header d-flex align-items-center justify-content-between">
+                <a href="/" class="navbar-brand text-color">Public Weather Application</a>
+              </div>
+            </div>
+          </nav>
+        </header>
+
+            <section class="description-section">
+	            <div class="container">
+	              <div class="page-info">
+	                <h2 class="mb-3 page-title">Weather Application</h2>
+	                <p class="mt-2 text-white">Web / Mobile Application to display local weather.</p>
+	              </div>
+	            </div>
+
+			    <div style="text-align: center; margin-top: 30px">
+			              <span class="site-consult" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Change location</span>
+			    </div>
+
+			    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				  	<form action="/" method="POST">
+					    <div class="modal-content">  
+					      <div class="modal-body">
+					        
+					          <div class="form-group">
+					            <label for="location-name" class="col-form-label">Choose location (Country, State, City):</label>
+					            <input type="text" name="search" class="form-control" id="location-name" placeholder="Location's name..." required="required">
+					          </div>
+					        
+					      </div>
+					      
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-custom-close" data-dismiss="modal">Close</button>
+					        <button type="submit" class="btn btn-custom-submit">Search</button>
+					      </div>
+
+					    </div>
+				  	</form>
+				  </div>
+				</div>
+
+			    <div class="col-md-6 offset-md-3 weather-box">
+
+			    	<% if(weather != null) { %>
+			    		<div class="weather-header">
+				    		<div class="weather-location">
+				    			<img src="/img/location.svg"/>
+				    			<div class="weather-location-country">
+		                    		<h3><%- weather.name %></h3>
+		                    		<span style="text-align: left; font-size: 13px;">(<%- weather.sys.country %>)</span>
+		                    	</div>
+		                    </div>
+
+		                    <div class="weather-info">
+		                    	<span class="weather-temp">
+		                    	<%- (weather.main.temp - 273.15).toFixed(0) %>°C
+		                    	</span>
+		                    	<div class="weather-sup">
+			                    	<span>Humidity: <%- weather.main.humidity -%>%
+			                    	</span>
+			                    	<span>Pressure: <%- (weather.main.pressure /100).toFixed(2) -%>%
+			                    	</span>
+			                    	
+		                    	</div>
+
+		                    </div>
+	                	</div>
+
+	                    <div class="weather-main">
+	                    	<div class="weather-main-text">
+		                    	<span class="weather-main-text-1"><%- weather.weather[0].main %></span>
+			                    <span class="weather-main-text-2"><%- weather.weather[0].description %></span>
+		                    </div>
+		                    <img class="weather-icon" height="58px" width="65px" src="http://openweathermap.org/img/w/<%- weather.weather[0].icon %>.png"/>
+		                    <div class="weather-wind-info">
+			                    	<span>Wind speed: <%- weather.wind.speed -%>
+			                    	</span>
+			                    	<span>deg: <%- weather.wind.deg -%>°
+			                    	</span>
+			                    	
+		                    	</div>
+	                    </div>
+		            <% } %>
+		            	<div class="weather-date">
+		            		<span>Local Date: <%- date -%></span>
+		            	</div>
+			      		
+				 
+			    </div>
+		    </section>
+
+		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+
+	</body>
+</html> 
