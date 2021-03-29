@@ -13,10 +13,8 @@ weatherRouter.get('', async(req, res) => {
     var date = day + "-" + month + "-" + year
 
     try {
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=Ain Naadja&appid=${process.env.API_KEY}`;
-        // `https://raddy.co.uk/wp-json/wp/v2/posts/`  
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=Ain Naadja&appid=${process.env.API_KEY}`; 
         const weatherAPI = await axios.get(url)
-        console.log("Weather data: ", weatherAPI.data)
         res.render('weather', { weather : weatherAPI.data, date: date })
     } catch (err) {
         if(err.response) {
@@ -27,11 +25,9 @@ weatherRouter.get('', async(req, res) => {
         } else if(err.request) {
             res.render('weather', { weather : null, date: date })
             console.log(err.request)
-            alert(err.request)
         } else {
             res.render('weather', { weather : null, date: date })
             console.error('Error', err.message)
-            alert(err.message)
         }
     } 
 })
@@ -49,10 +45,8 @@ weatherRouter.post('', async(req, res) => {
     var date = day + "-" + month + "-" + year
 
     try {
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${process.env.API_KEY}`;
-        // `https://raddy.co.uk/wp-json/wp/v2/posts/`  
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${process.env.API_KEY}`;  
         const weatherAPI = await axios.get(url)
-        console.log("Weather data: ", weatherAPI.data)
         res.render('weather', { weather : weatherAPI.data, date: date })
     } catch (err) {
         if(err.response) {
@@ -63,11 +57,9 @@ weatherRouter.post('', async(req, res) => {
         } else if(err.request) {
             res.render('weather', { weather : null, date: date })
             console.log(err.request)
-            alert(err.request)
         } else {
             res.render('weather', { weather : null, date: date })
             console.error('Error', err.message)
-            alert(err.message)
         }
     } 
 })

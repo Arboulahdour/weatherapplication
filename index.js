@@ -1,8 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+require('dotenv').config()
 
 const app = express()
-const port = 5000
+const port = process.env.PORT || 5000
 
 // Static Files
 app.use(express.static('public'))
